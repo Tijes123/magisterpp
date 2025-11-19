@@ -1,10 +1,8 @@
-
-
-html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > .head {
+html[grid] #studiewijzer-container > section > div > div.studiewijzer-list.normaal > .head {
     display: none;
 }
 
-html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul {
+html[grid] #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
     gap: 10px;
@@ -14,7 +12,7 @@ html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > u
     border: none;
 }
 
-html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul > li {
+html[grid] #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul > li {
     text-align: center;
     height: 150px;
     flex: 1 1 150px;
@@ -26,7 +24,7 @@ html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > u
     background-color: var(--mooie-bg-color-mid);
 }
 
-html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul > li > a {
+html[grid] #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul > li > a {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
@@ -39,7 +37,7 @@ html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > u
     border-radius: 32px;
 }
 
-html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul > li > a > span {
+html[grid] #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul > li > a > span {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
@@ -52,6 +50,6 @@ html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > u
     padding: 0 !important;
 }
 
-html #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul > li > a > span:nth-child(2) {
+html[grid] #studiewijzer-container > section > div > div.studiewijzer-list.normaal > ul > li > a > span:nth-child(2) {
     display: none;
 }

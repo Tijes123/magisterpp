@@ -1,51 +1,51 @@
 :root {
-    --mooie-bg-color: #ffffff !important;
-    --mooie-bg-color-mid: #eeeeee !important;
-    --mooie-bg-color-hover: #d2d8db !important;
-    --mooie-text-color: #000 !important;
-    --mooie-text-color-white: #fff !important;
+    --mooie-bg-color: #ffffff;
+    --mooie-bg-color-mid: #eeeeee;
+    --mooie-bg-color-hover: #d2d8db;
+    --mooie-text-color: #000;
+    --mooie-text-color-white: #fff;
 
-    --blue-text-color-light: #2b2b2b !important;
+    --blue-text-color-light: #2b2b2b;
 
-    background-color: var(--mooie-bg-color) !important;
-    --dna-primary: var(--mooie-text-color) !important;
-    --dna-secondary: transparent !important;
-    --dna-background: transparent !important;
+    background-color: var(--mooie-bg-color);
+    --dna-primary: var(--mooie-text-color);
+    --dna-secondary: transparent;
+    --dna-background: transparent;
     
-    --background-1: #0076ba !important; /*iets lichter dan licht*/
-    --primary-background: #1f97f9 !important; /*licht*/
-    --secondary-background: #0683ea !important; /*donker*/
-    --secondary-background-darker: #cde6fa !important; /*donker*/
+    --background-1: #0076ba; /*iets lichter dan licht*/
+    --primary-background: #1f97f9; /*licht*/
+    --secondary-background: #0683ea; /*donker*/
+    --secondary-background-darker: #cde6fa; /*donker*/
     
 
-    --mid-gray: #7f7f7fff !important;
+    --mid-gray: #7f7f7fff;
 
-    --cijfers-background-opacity: 1 !important;
+    --cijfers-background-opacity: 1;
 
-    --icon-filter: brightness(50%) !important;
+    --icon-filter: brightness(50%);
 }
 
 
 :root[data-theme = "dark"] {
-    --mooie-bg-color: #1F2228 !important;
-    --mooie-bg-color-mid: #191C21 !important;
-    --mooie-bg-color-hover: #171A1E !important;
-    --mooie-text-color: #fff !important;
-    --mooie-text-color-white: #fff !important;
+    --mooie-bg-color: #1F2228;
+    --mooie-bg-color-mid: #191C21;
+    --mooie-bg-color-hover: #171A1E;
+    --mooie-text-color: #fff;
+    --mooie-text-color-white: #fff;
 
-    --blue-text-color-light: #a2c5e5 !important;
+    --blue-text-color-light: #a2c5e5;
 
-    --dna-primary: var(--mooie-text-color) !important;
-    --dna-secondary: transparent !important;
-    --dna-background: transparent !important;
+    --dna-primary: var(--mooie-text-color);
+    --dna-secondary: transparent;
+    --dna-background: transparent;
     
-    --background-1: #0065A0 !important; /*/ iets lichter dan licht */
-    --primary-background: #0E4772 !important; /*/ licht */
-    --secondary-background: #023660 !important; /*/ donker */
-    --secondary-background-darker: #14212d !important; /*/ --background-secondary with opacity .2 */
+    --background-1: #0065A0; /*/ iets lichter dan licht */
+    --primary-background: #0E4772; /*/ licht */
+    --secondary-background: #023660; /*/ donker */
+    --secondary-background-darker: #14212d; /*/ --background-secondary with opacity .2 */
     
 
-    --mid-gray: #7f7f7fff !important;
+    --mid-gray: #7f7f7fff;
 
-    --cijfers-background-opacity: .15 !important;
+    --cijfers-background-opacity: .15;
 }

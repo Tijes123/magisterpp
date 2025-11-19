@@ -30,12 +30,12 @@
                 "js/util.js",
                 "js/api.js",
                 "js/main.js",
-                "js/customStyle.js",
 				"js/theme.js"
             ],
             "css": [
 				"css/theme.css",
-                "css/main.css"
+                "css/main.css",
+				"css/studiewijzersGrid.css"
             ],
             "run_at": "document_start"
         },
@@ -44,11 +44,12 @@
                 "*://*.magister.net/error.html?*"
             ],
             "css": [
+				"css/theme.css",
                 "css/error.css"
             ],
             "js": [
                 "js/error.js",
-                "js/customStyle.js"
+				"js/theme.js"
             ]
         },
         {
@@ -61,7 +62,7 @@
             ],
             "js": [
                 "js/account.js",
-                "js/customStyle.js"
+				"js/theme.js"
             ]
         },
         {
@@ -74,7 +75,6 @@
             ],
             "js": [
                 "js/berichten.js",
-                "js/customStyle.js",
 				"js/theme.js"
             ],
             "all_frames": true

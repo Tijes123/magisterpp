@@ -1,46 +1,10 @@
-chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-
-    if (changeInfo.status == "loading") {
-
-        var splitUrl = tab.url.split(".")
-        
-        if (splitUrl[1] == "magister") {
-
-            chrome.storage.sync.get(
-                { theme: "auto" , studiewijzersGrid: false },
-                async (items) => {
-
-                    let cssToInsert = [];
-
-                    // Studiewijzers Grid
-                    if (items.studiewijzersGrid) {
-                        cssToInsert.push("css/studiewijzersGrid.css");
-                    }
-
-                    console.log(cssToInsert)
-
-                    for (const cssFile of cssToInsert) {
-                        await chrome.scripting.insertCSS({
-                            target: { tabId: tabId },
-                            files: [cssFile],
-                        }).then(() => console.log(`Inserted ${cssFile}`))
-                          .catch((err) => console.warn(`Error inserting ${cssFile}`, err));
-                    }
-                }
-            );
-        }
-    }
-})
-
 // Open options page when clicking on thingy
 chrome.action.onClicked.addListener(() => {
     chrome.runtime.openOptionsPage();
 });
 
 
-
 // yoink
-
 let userId,
     userToken,
     userTokenDate

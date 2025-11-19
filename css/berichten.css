@@ -1,3 +1,6 @@
+:root {
+	color-scheme: light dark;
+}
 html body {
 	background-color: var(--mooie-bg-mid) !important;
 }

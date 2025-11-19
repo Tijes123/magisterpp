@@ -1707,7 +1707,8 @@ var update100ms = window.setInterval(function(){
 
   // Set iframe event listeners for key up/down
   if (zoekenActive) {
-    const berichtenIframe = document.getElementById("berichten-nieuw-frame")
+    const berichtenIframe = document.getElementById("berichten-nieuw-frame");
+	berichtenIframe.style = "colorscheme: normal";
 
     if (berichtenIframe){
       if (setBerichtenIframeDown){
