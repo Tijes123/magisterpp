@@ -1,27 +1,6 @@
-html body {
-    --mooie-bg-color: #1F2228;
-    --mooie-bg-color-mid: #191C21;
-    --mooie-bg-color-hover: #171A1E;
-    --mooie-text-color: #fff;
-    --mooie-text-color-white: #fff;
-
-    --blue-text-color-light: #a2c5e5;
-
-    background-color: var(--mooie-bg-color);
-    --dna-primary: var(--mooie-text-color);
-    --dna-secondary: transparent;
-    --dna-background: transparent;
-    
-    --primary-background: #0E4772; 
-    --secondary-background: #023660;
-    
-    --background-1: #0065A0; 
-
-    --mid-gray: #7f7f7fff;
-}
 
 html body {
-    background-color: var(--mooie-bg-mid) !important;
+	background-color: var(--mooie-bg-color) !important;
 }
 
 html div.folders-container {

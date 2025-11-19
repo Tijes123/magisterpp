@@ -1,4 +1,4 @@
-html body {
+:root {
     --mooie-bg-color: #ffffff !important;
     --mooie-bg-color-mid: #eeeeee !important;
     --mooie-bg-color-hover: #d2d8db !important;
@@ -23,4 +23,29 @@ html body {
     --cijfers-background-opacity: 1 !important;
 
     --icon-filter: brightness(50%) !important;
+}
+
+
+:root[data-theme = "dark"] {
+    --mooie-bg-color: #1F2228 !important;
+    --mooie-bg-color-mid: #191C21 !important;
+    --mooie-bg-color-hover: #171A1E !important;
+    --mooie-text-color: #fff !important;
+    --mooie-text-color-white: #fff !important;
+
+    --blue-text-color-light: #a2c5e5 !important;
+
+    --dna-primary: var(--mooie-text-color) !important;
+    --dna-secondary: transparent !important;
+    --dna-background: transparent !important;
+    
+    --background-1: #0065A0 !important; /*/ iets lichter dan licht */
+    --primary-background: #0E4772 !important; /*/ licht */
+    --secondary-background: #023660 !important; /*/ donker */
+    --secondary-background-darker: #14212d !important; /*/ --background-secondary with opacity .2 */
+    
+
+    --mid-gray: #7f7f7fff !important;
+
+    --cijfers-background-opacity: .15 !important;
 }

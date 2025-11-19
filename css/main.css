@@ -1,28 +1,6 @@
+
 html body {
-    --mooie-bg-color: #1F2228;
-    --mooie-bg-color-mid: #191C21;
-    --mooie-bg-color-hover: #171A1E;
-    --mooie-text-color: #fff;
-    --mooie-text-color-white: #fff;
-
-    --blue-text-color-light: #a2c5e5;
-
-    background-color: var(--mooie-bg-color);
-    --dna-primary: var(--mooie-text-color);
-    --dna-secondary: transparent;
-    --dna-background: transparent;
-    
-    --background-1: #0065A0; /*/ iets lichter dan licht */
-    --primary-background: #0E4772; /*/ licht */
-    --secondary-background: #023660; /*/ donker */
-    --secondary-background-darker: #14212d; /*/ --background-secondary with opacity .2 */
-    
-
-    --mid-gray: #7f7f7fff;
-
-    --cijfers-background-opacity: .15;
-
-    --icon-filter: invert(100%) brightness(150%);
+	background-color: var(--mooie-bg-color);
 }
 
 html ::selection {

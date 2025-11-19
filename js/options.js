@@ -105,7 +105,11 @@ function checkUpdate() {
 }
 
 const saveOptions = () => {
-  const darkMode = document.getElementById('dark').checked
+
+  const darkSelected = document.getElementById('dark').checked;
+  const lightSelected = document.getElementById('light').checked;
+  const theme = darkSelected ? "dark" :
+				lightSelected ? "light" : "auto";
 
   const keuzeBtn = document.getElementById('keuzeBtn').checked
   var keuzeMode
@@ -169,8 +173,10 @@ const saveOptions = () => {
     customPfp = false
   }
 
+	console.log("test");
+
   chrome.storage.sync.set(
-    { darkMode: darkMode , keuzeBtn: keuzeBtn , cijfers: cijfers , studiewijzersGrid: studiewijzersGrid , hideHelpBtn: hideHelpBtn , hideZoekenBtn: hideZoekenBtn , inlogText: inlogText , hidePfp: hidePfp , customPfp: customPfp , widgetCustomHigh: widgetCustomHigh , widgetCustomLow: widgetCustomLow , hideBestellenBtn: hideBestellenBtn , autoLogin: autoLogin , username: username , password: password , widgetDrag: widgetDrag, customVandaag: customVandaag , maxLaatsteCijfers: maxLaatsteCijfers , keuzeMode: keuzeMode , customHtml: customHtml , showTime: showTime , customColor: selectedColorName , zermelo: zermelo , oppBtn: oppBtn , koppelingenBtn: koppelingenBtn , clockSecondBtn: clockSecondBtn , sidebarSmallBtn: sidebarSmallBtn , spaceSidebar: spaceSidebar },
+    { theme: theme , keuzeBtn: keuzeBtn , cijfers: cijfers , studiewijzersGrid: studiewijzersGrid , hideHelpBtn: hideHelpBtn , hideZoekenBtn: hideZoekenBtn , inlogText: inlogText , hidePfp: hidePfp , customPfp: customPfp , widgetCustomHigh: widgetCustomHigh , widgetCustomLow: widgetCustomLow , hideBestellenBtn: hideBestellenBtn , autoLogin: autoLogin , username: username , password: password , widgetDrag: widgetDrag, customVandaag: customVandaag , maxLaatsteCijfers: maxLaatsteCijfers , keuzeMode: keuzeMode , customHtml: customHtml , showTime: showTime , customColor: selectedColorName , zermelo: zermelo , oppBtn: oppBtn , koppelingenBtn: koppelingenBtn , clockSecondBtn: clockSecondBtn , sidebarSmallBtn: sidebarSmallBtn , spaceSidebar: spaceSidebar },
     () => {
       // do after saved
       // console.log(`darkMode: ${darkMode}\nkeuzeBtn: ${keuzeBtn}\ncijfers: ${cijfers}\nstudiewijzersGrid: ${studiewijzersGrid}\nhideHelpBtn: ${hideHelpBtn}\ninlogText: ${inlogText}\nhidePfp: ${hidePfp}\ncustomPfp:${customPfp}\nwidgetCustomHigh:${widgetCustomHigh}\nwidgetCustomLow:${widgetCustomLow}`)
@@ -183,13 +189,13 @@ const saveOptions = () => {
   )
 };
 
-
 const restoreOptions = () => {
   chrome.storage.sync.get(
-    { darkMode: true , keuzeBtn: true , cijfers: false , studiewijzersGrid: false , hideHelpBtn: true , inlogText: "Bonjour" , hidePfp: false , customPfp: false , widgetCustomHigh: 385 , widgetCustomLow: 0 , hideBestellenBtn: false , autoLogin: false , username: "" , password: "" , widgetDrag: true , hideZoekenBtn: true , customVandaag: false , maxLaatsteCijfers: 10 , keuzeMode: "table" , customHtml: false , showTime: false , customColor: "default" , zermelo: false , oppBtn: true , koppelingenBtn: true , clockSecondBtn: true , sidebarSmallBtn: false , spaceSidebar: false },
+    { theme: "auto" , keuzeBtn: true , cijfers: false , studiewijzersGrid: false , hideHelpBtn: true , inlogText: "Bonjour" , hidePfp: false , customPfp: false , widgetCustomHigh: 385 , widgetCustomLow: 0 , hideBestellenBtn: false , autoLogin: false , username: "" , password: "" , widgetDrag: true , hideZoekenBtn: true , customVandaag: false , maxLaatsteCijfers: 10 , keuzeMode: "table" , customHtml: false , showTime: false , customColor: "default" , zermelo: false , oppBtn: true , koppelingenBtn: true , clockSecondBtn: true , sidebarSmallBtn: false , spaceSidebar: false },
     (items) => {
-      document.getElementById('dark').checked = items.darkMode;
-      document.getElementById('light').checked = !items.darkMode;
+      document.getElementById('dark').checked = items.theme == "dark";
+      document.getElementById('light').checked = items.theme == "light";
+      document.getElementById('auto').checked = items.theme == "auto";
 
       
       document.getElementById('keuzeBtn').checked = items.keuzeBtn;
@@ -249,7 +255,6 @@ const restoreOptions = () => {
       selectedColorName = items.customColor
       updateCustomSelectedColor()
 
-      changeStyleMode()
       updateAutoLogin()
       updateFileUpload()
       updateKeuzeMode()
@@ -258,14 +263,6 @@ const restoreOptions = () => {
   )
 };
 
-
-const changeStyleMode = () => {
-  if (document.getElementById('dark').checked) {
-    document.getElementById("lightModeStylesheet").disabled = true
-  }else if (document.getElementById('light').checked) {
-    document.getElementById("lightModeStylesheet").disabled = false
-  }
-}
 
 const updateAutoLogin = () => {
   if (document.getElementById("autoLogin").checked) {
@@ -303,14 +300,9 @@ const updateClockSecond = () => {
 
 document.addEventListener('DOMContentLoaded', restoreOptions)
 
-document.getElementById('dark').addEventListener('change', changeStyleMode)
-document.getElementById('light').addEventListener('change', changeStyleMode)
-
-
 document.querySelectorAll("#main label input").forEach((input) => {
   input.addEventListener('change', saveOptions)
 })
-
 
 //~ Reset numeber inputs
 document.getElementById("resetWidgetCustomHigh").addEventListener("click", () => {

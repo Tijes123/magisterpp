@@ -30,9 +30,11 @@
                 "js/util.js",
                 "js/api.js",
                 "js/main.js",
-                "js/customStyle.js"
+                "js/customStyle.js",
+				"js/theme.js"
             ],
             "css": [
+				"css/theme.css",
                 "css/main.css"
             ],
             "run_at": "document_start"
@@ -54,6 +56,7 @@
                 "*://accounts.magister.net/account/login?*"
             ],
             "css": [
+				"css/theme.css",
                 "css/account.css"
             ],
             "js": [
@@ -66,11 +69,13 @@
                 "*://*.magister.net/magister-berichten/*"
             ],
             "css": [
+				"css/theme.css",
                 "css/berichten.css"
             ],
             "js": [
                 "js/berichten.js",
-                "js/customStyle.js"
+                "js/customStyle.js",
+				"js/theme.js"
             ],
             "all_frames": true
         },

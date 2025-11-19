@@ -178,6 +178,23 @@ function formatYMDtoDmY(dateStr) {
   return `${parseInt(day)} ${months[parseInt(month) - 1]} ${year}`;
 }
 
+// Is the current theme dark, this is only needed to send the theme to the other websites.
+function isDarkMode (theme) {
+	const predicate = window.matchMedia("(prefers-color-scheme: dark)");
+
+	switch (theme) {
+		case "dark":
+			return true;
+		case "light":
+			return false;
+		case "auto":
+			return predicate.matches;
+		case _:
+			console.warn("Invalid theme", theme);
+			return false;
+	}
+}
+
 
 var update100ms = window.setInterval(function(){
 
@@ -205,7 +222,7 @@ var update100ms = window.setInterval(function(){
   // if (!document.getElementById("coverDivKeuze")) {
   if (true) {  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     chrome.storage.sync.get(
-      { keuzeBtn: true, darkMode: true , keuzeMode: "table" , zermelo: false },
+      { keuzeBtn: true, theme: "auto" , keuzeMode: "table" , zermelo: false },
       (items) => {
 
         /// Keuze page
@@ -250,7 +267,7 @@ var update100ms = window.setInterval(function(){
 
               let options = []
 
-              if (items.darkMode) options.push("style=magDark")
+              if (isDarkMode(items.theme)) options.push("style=magDark")
               else options.push("style=magLight")
 
               if (items.keuzeMode === "options" || items.keuzeMode === "both") options.push("sidebar=1")
@@ -344,7 +361,7 @@ var update100ms = window.setInterval(function(){
 
               let options = []
 
-              if (items.darkMode) options.push("style=magDark")
+              if (isDarkMode(items.theme)) options.push("style=magDark")
               else options.push("style=magLight")
               
               if (items.keuzeMode === "options" || items.keuzeMode === "both") options.push("sidebar=1")
@@ -450,7 +467,7 @@ var update100ms = window.setInterval(function(){
 
   /// Chrome storage
   chrome.storage.sync.get(
-      { cijfers: false , hideHelpBtn: true , hidePfp: false , widgetCustomHigh: 385 , widgetCustomLow: 0 , darkMode: true , hideBestellenBtn: false , customPfp: false , widgetDrag: true , hideZoekenBtn: true , customVandaag: false , maxLaatsteCijfers: 10 , showTime: false , oppBtn: true , koppelingenBtn: true , clockSecondBtn: true , sidebarSmallBtn: false , spaceSidebar: false },
+      { cijfers: false , hideHelpBtn: true , hidePfp: false , widgetCustomHigh: 385 , widgetCustomLow: 0 , theme: "auto" , hideBestellenBtn: false , customPfp: false , widgetDrag: true , hideZoekenBtn: true , customVandaag: false , maxLaatsteCijfers: 10 , showTime: false , oppBtn: true , koppelingenBtn: true , clockSecondBtn: true , sidebarSmallBtn: false , spaceSidebar: false },
       (items) => {
 
         spaceToggleSidebar = items.spaceSidebar
@@ -610,7 +627,7 @@ var update100ms = window.setInterval(function(){
 
           if (iframe) {
             const iframeDocument = iframe.contentWindow.document
-            if (items.darkMode) {
+            if (isDarkMode(items.theme)) {
               iframeDocument.body.style.color = "#fff"
             }else {
               iframeDocument.body.style.color = "#000"
@@ -621,7 +638,7 @@ var update100ms = window.setInterval(function(){
 
           if (iframeAgenda) {
             const iframeDocument = iframeAgenda.contentWindow.document
-            if (items.darkMode) {
+            if (isDarkMode(items.theme)) {
               iframeDocument.body.style.color = "#fff"
             }else {
               iframeDocument.body.style.color = "#000"
@@ -900,25 +917,26 @@ var update100ms = window.setInterval(function(){
           if (timeSpan.textContent !== timeNow) [
             timeSpan.textContent = timeNow
           ]
+
+		  const time = new Date()
+		  const hours = time.getHours() % 12
+		  const minutes = time.getMinutes()
+		  const seconds = time.getSeconds()
+
+		  const hourDegrees = (hours * 30) + (minutes * 0.5)
+		  const minuteDegrees = (minutes * 6) + (seconds * 0.1)
+		  const secondDegrees = seconds * 6
+
+		  document.querySelector("#clock > .hour").style.transform = `rotate(${hourDegrees}deg)`;
+		  document.querySelector("#clock > .minute").style.transform = `rotate(${minuteDegrees}deg)`;
+			
+		  if (items.clockSecondBtn) {
+		    document.querySelector("#clock > .second").style.transform = `rotate(${secondDegrees}deg)`;
+		  }
         } 
         
         // document.getElementById("clock").title = new Date().toLocaleTimeString([], { hour12: false }).replace(/:/g, ' : ')
 
-        const time = new Date()
-        const hours = time.getHours() % 12
-        const minutes = time.getMinutes()
-        const seconds = time.getSeconds()
-
-        const hourDegrees = (hours * 30) + (minutes * 0.5)
-        const minuteDegrees = (minutes * 6) + (seconds * 0.1)
-        const secondDegrees = seconds * 6
-
-        document.querySelector("#clock > .hour").style.transform = `rotate(${hourDegrees}deg)`;
-        document.querySelector("#clock > .minute").style.transform = `rotate(${minuteDegrees}deg)`;
-        
-        if (items.clockSecondBtn) {
-          document.querySelector("#clock > .second").style.transform = `rotate(${secondDegrees}deg)`;
-        }
         
 
       }
@@ -2350,8 +2368,6 @@ document.addEventListener('keydown', (e) => {
   }
 
 });
-
-
 
 //* TMP berichten download
 

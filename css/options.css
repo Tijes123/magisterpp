@@ -1,32 +1,17 @@
 * {
   margin: 0;
   padding: 0;
-  transition: color ease .25s, background-color ease .25s;
 }
 
 body {
-  /* Vars */
-  
-  --mooie-bg-color: #1F2228;
-  --mooie-bg-color-mid: #191C21;
-  --mooie-bg-color-hover: #171A1E;
-  --mooie-text-color: #fff;
-  
-  --background-1: #0065A0; /*/ iets lichter dan licht */
-  --primary-background: #0E4772; /*/ licht */
-  --secondary-background: #023660; /*/ donker */
-  --secondary-background-darker: #14212d; /*/ --background-secondary with opacity .2 */
-  
-  --mid-gray: #7f7f7fff;
-  --dark-gray: #3f3f3fff;
-
   /* Style */
 
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: var(--mooie-bg-color);
+  background-color: var(--mooie-bg-color-mid);
+  width: 600px;
+  height: 350px;
 }
 
 /*? Scroll bar */
@@ -50,19 +35,15 @@ html ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-background); 
 }
 
-
 .comment {
   color: var(--mid-gray);
 }
 
 #main {
-  width: 50vw;
-  height: 80vh;
+  width: 100%;
+  height: 100%;
   background-color: var(--mooie-bg-color-mid);
-  border-radius: 16px;
 }
-
-
 
 #main h1 {
   color: var(--mooie-text-color);
@@ -176,13 +157,7 @@ html ::-webkit-scrollbar-thumb:hover {
 
 #content > .c-page {
   height: 100%;
-  overflow-x: hidden;
   overflow-y: auto;
-}
-
-#content > .c-page > h2 {
-  color: var(--mooie-text-color);
-  margin: 8px 16px;
 }
 
 #content > .c-page > .head {
@@ -193,6 +168,11 @@ html ::-webkit-scrollbar-thumb:hover {
   text-align: center;
 }
 
+#content > .c-page > h2 {
+  color: var(--mooie-text-color);
+  margin: 8px 16px;
+}
+
 #content > .c-page > label {
   display: block;
   width: calc(100% - 30px);
@@ -200,6 +180,10 @@ html ::-webkit-scrollbar-thumb:hover {
   color: var(--mooie-text-color);
   font-size: 1rem;
   user-select: none;
+}
+
+#content > div {
+  padding-bottom: 20px;
 }
 
 
@@ -267,6 +251,13 @@ label[for="light"]::before {
   margin-right: 8px;
 }
 
+label[for="auto"]::before {
+  content: "\f013";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  margin-right: 8px;
+}
+
 label[for="pfp-default"]::before {
   content: "\f007";
   font-family: "Font Awesome 6 Free";
@@ -327,6 +318,19 @@ label[for="upload"]::before {
   margin-right: 8px;
 }
 
+label[for="t-true"]::before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  margin-right: 8px;
+}
+
+label[for="t-false"]::before {
+  content: "\58";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  margin-right: 8px;
+}
 
 
 /*~ Toggle Switch */
@@ -513,6 +517,7 @@ input[type=number] {
   padding-left: 4px;
   color: #fff;
 }
+
 
 /*~ Update text */
 #checkUpdate {
