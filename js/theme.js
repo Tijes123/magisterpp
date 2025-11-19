@@ -1,6 +1,11 @@
 chrome.storage.sync.get(
-	{theme: "auto"},
+	{theme: "auto", darkMode: null},
 	(items) => {
+		if (darkMode) {
+			chrome.storage.sync.remove("darkMode");
+			const theme = darkMode ? "dark" : "light";
+			chrome.storage.sync.set({theme: theme});
+		}
 		setTheme(items.theme)
 	}
 )

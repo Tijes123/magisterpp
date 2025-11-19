@@ -1,6 +1,5 @@
-
 html body {
-	background-color: var(--mooie-bg-color) !important;
+	background-color: var(--mooie-bg-mid) !important;
 }
 
 html div.folders-container {
