@@ -2772,7 +2772,7 @@ html dna-overlay-container > dna-overlay > dna-snack-bar-overlay {
 /*~ Cijfers fix */
 
 html #cijfers-laatst-behaalde-resultaten-container #idDetails > div > div.widget > div.block > div.content > dl.list-dl > dd:nth-child(2) {
-    height: 32px;
+    min-height: 32px; 
     margin: 0;
 }
 
