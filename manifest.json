@@ -87,6 +87,18 @@
                 "js/zermelo.js"
             ],
             "all_frames": true
+        },
+        {
+            "matches": [
+                "*://jmlu.tekar.dev/*"
+            ],
+			"css": [ 
+				"css/keuzerooster.css"
+			],
+            "js": [
+                "js/theme.js"
+            ],
+            "all_frames": true
         }
     ],
     "permissions": [
