@@ -1,0 +1,51 @@
+:root body {
+    overflow: hidden;
+
+
+    --mooie-bg-color: #ffffff;
+    --mooie-bg-color-hover: #d2d8db;
+    --mooie-text-color: #000;
+    
+    --light-gray: #3f3f3f;
+    --mid-gray: #7f7f7f;
+    --dark-gray: #bfbfbf;
+
+    --gang: #dfdfdf;
+    --lokaal: #979797;
+    --other: #bfbfbf;
+    
+    --primary-background: #1f97f9; /*licht*/
+    --secondary-background: #0683ea; /*donker*/
+    --secondary-background-darker: #cde6fa; /*donker*/
+    
+    --background-1: #0076ba; /*iets lichter dan licht*/
+
+    --color-1: #915459;
+    --color-2: #294977;
+}
+
+:root[data-theme="dark"] body {
+    overflow: hidden;
+
+    
+    --mooie-bg-color: #1F2228;
+    --mooie-bg-color-hover: #171A1E;
+    --mooie-text-color: #fff;
+    
+    --light-gray: #bfbfbf;
+    --mid-gray: #7f7f7f;
+    --dark-gray: #3f3f3f;
+
+    --gang: #3f3f3f;
+    --lokaal: #bfbfbf;
+    --other: #7f7f7f;
+    
+    --primary-background: #0E4772; /*/ licht */
+    --secondary-background: #023660; /*/ donker */
+    --secondary-background-darker: #14212d; /*/ --background-secondary with opacity .2 */
+    
+    --background-1: #0065A0; /*/ iets lichter dan licht */
+
+    --color-1: #C6B29D;
+    --color-2: #7F95B6;
+}
