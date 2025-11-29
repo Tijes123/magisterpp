@@ -30,6 +30,7 @@
                 "js/util.js",
                 "js/api.js",
                 "js/main.js",
+				"js/customTheme.js",
 				"js/theme.js"
             ],
             "css": [
@@ -49,6 +50,7 @@
             ],
             "js": [
                 "js/error.js",
+				"js/customTheme.js",
 				"js/theme.js"
             ]
         },
@@ -62,6 +64,7 @@
             ],
             "js": [
                 "js/account.js",
+				"js/customTheme.js",
 				"js/theme.js"
             ]
         },
@@ -75,6 +78,7 @@
             ],
             "js": [
                 "js/berichten.js",
+				"js/customTheme.js",
 				"js/theme.js"
             ],
             "all_frames": true

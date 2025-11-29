@@ -179,20 +179,8 @@ function formatYMDtoDmY(dateStr) {
 }
 
 // Is the current theme dark, this is only needed to send the theme to the other websites.
-function isDarkMode (theme) {
-	const predicate = window.matchMedia("(prefers-color-scheme: dark)");
-
-	switch (theme) {
-		case "dark":
-			return true;
-		case "light":
-			return false;
-		case "auto":
-			return predicate.matches;
-		case _:
-			console.warn("Invalid theme", theme);
-			return false;
-	}
+function isDarkMode () {
+	return document.documentElement.dataset["theme"] == "dark";
 }
 
 
@@ -267,9 +255,6 @@ var update100ms = window.setInterval(function(){
 
               let options = []
 
-              if (isDarkMode(items.theme)) options.push("style=magDark")
-              else options.push("style=magLight")
-
               if (items.keuzeMode === "options" || items.keuzeMode === "both") options.push("sidebar=1")
               if (items.keuzeMode === "table" || items.keuzeMode === "both") options.push("table=1")
 
@@ -281,27 +266,17 @@ var update100ms = window.setInterval(function(){
               coverDivKeuzeGet.appendChild(iframeKeuze)
             }
 
-            if (!document.getElementById("iframeZermelo")) {
-              const iframeZermelo = document.createElement("iframe")
-              const coverDivKeuzeGet = document.getElementById("coverDivKeuze")
-
-              iframeZermelo.src = `https://jordanmlu.zportal.nl`
-
-              iframeZermelo.id = "iframeZermelo"
-              iframeZermelo.style.width = "100%"
-              iframeZermelo.style.height = "100%"
-              coverDivKeuzeGet.appendChild(iframeZermelo)
-            }
-
             /// Show UI
             event.preventDefault();
             keuzeUI = true;
-            document.getElementById("iframeKeuze").style.position = "relative"
-            document.getElementById("iframeKeuze").style.left = "0"
+
+            document.getElementById("iframeKeuze").style.display = "block"
 
             zermeloUI = false;
-            document.getElementById("iframeZermelo").style.position = "absolute"
-            document.getElementById("iframeZermelo").style.left = "-8000px"
+			iframeZermelo = document.getElementById("iframeZermelo");
+			if (iframeZermelo) {
+				iframeZermelo.style.display = "none"
+			}
 
             window.location.href = `${window.location.href.split("?")[0]}?keuzes`
 
@@ -354,27 +329,6 @@ var update100ms = window.setInterval(function(){
           /// Zermelo button onclick
           newButton.onclick = function(event) {
 
-            /// Make the iframe if its not there yet
-            if (!document.getElementById("iframeKeuze")) {
-              const iframeKeuze = document.createElement("iframe")
-              const coverDivKeuzeGet = document.getElementById("coverDivKeuze")
-
-              let options = []
-
-              if (isDarkMode(items.theme)) options.push("style=magDark")
-              else options.push("style=magLight")
-              
-              if (items.keuzeMode === "options" || items.keuzeMode === "both") options.push("sidebar=1")
-              if (items.keuzeMode === "table" || items.keuzeMode === "both") options.push("table=1")
-
-              iframeKeuze.src = `https://jmlu.tekar.dev/keuze?${options.join("&")}`
-
-              iframeKeuze.id = "iframeKeuze"
-              iframeKeuze.style.width = "100%"
-              iframeKeuze.style.height = "100%"
-              coverDivKeuzeGet.appendChild(iframeKeuze)
-            }
-
             if (!document.getElementById("iframeZermelo")) {
               const iframeZermelo = document.createElement("iframe")
               const coverDivKeuzeGet = document.getElementById("coverDivKeuze")
@@ -390,12 +344,14 @@ var update100ms = window.setInterval(function(){
             /// Show UI
             event.preventDefault();
             zermeloUI = true;
-            document.getElementById("iframeZermelo").style.position = "relative"
-            document.getElementById("iframeZermelo").style.left = "0"
+            document.getElementById("iframeZermelo").style.display = "block"
 
             keuzeUI = false;
-            document.getElementById("iframeKeuze").style.position = "absolute"
-            document.getElementById("iframeKeuze").style.left = "-8000px"
+			iframeKeuze = document.getElementById("iframeKeuze");
+			if (iframeKeuze) {
+				console.log("hiding keuze");
+				iframeKeuze.style.display = "none"
+			}
 
             window.location.href = `${window.location.href.split("?")[0]}?zermelo`
             
@@ -627,7 +583,7 @@ var update100ms = window.setInterval(function(){
 
           if (iframe) {
             const iframeDocument = iframe.contentWindow.document
-            if (isDarkMode(items.theme)) {
+            if (!isDarkMode()) {
               iframeDocument.body.style.color = "#fff"
             }else {
               iframeDocument.body.style.color = "#000"
@@ -638,7 +594,7 @@ var update100ms = window.setInterval(function(){
 
           if (iframeAgenda) {
             const iframeDocument = iframeAgenda.contentWindow.document
-            if (isDarkMode(items.theme)) {
+            if (!isDarkMode()) {
               iframeDocument.body.style.color = "#fff"
             }else {
               iframeDocument.body.style.color = "#000"
