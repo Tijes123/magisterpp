@@ -89,13 +89,14 @@ sbUpdate.onclick = () => {
 
 function checkUpdate() {
   const localVersion = chrome.runtime.getManifest().version;
+  document.getElementById("currentVersion").textContent = `Versie: ${localVersion}`;
 
   fetch('https://raw.githubusercontent.com/TTekar/magisterpp/main/manifest.json')
     .then(res => res.json())
     .then(remoteManifest => {
       const remoteVersion = remoteManifest.version;
       if (remoteVersion !== localVersion) {
-        document.getElementById("checkUpdate").textContent = `Er is een nieuwe versie beschikbaar! (Installed: ${localVersion}, Latest: ${remoteVersion})`;
+        document.getElementById("checkUpdate").textContent = `Er is een nieuwe versie beschikbaar! (${remoteVersion})`;
         document.getElementById("updateHelp").style.display = "block";
       } else {
         document.getElementById("checkUpdate").textContent = "Magister++ is up to date.";
