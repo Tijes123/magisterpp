@@ -179,9 +179,6 @@ function formatYMDtoDmY(dateStr) {
 }
 
 // Is the current theme dark, this is only needed to send the theme to the other websites.
-function isDarkMode () {
-	return document.documentElement.dataset["theme"] == "dark";
-}
 
 
 var update100ms = window.setInterval(function(){
@@ -581,11 +578,13 @@ var update100ms = window.setInterval(function(){
         if (currentLocationSplit.includes("magister.net/magister/#/agenda")) {
           const iframe = document.querySelector("#idAantekeningen > div > .widget > .block > .content.aantekeningen > .widget table > tbody > tr > td.k-editable-area > iframe")
 
+		  const darkMode = document.documentElement.dataset["theme"] == "dark";
+
           if (iframe) {
             const iframeDocument = iframe.contentWindow.document
-            if (!isDarkMode()) {
+            if (darkMode) {
               iframeDocument.body.style.color = "#fff"
-            }else {
+            } else {
               iframeDocument.body.style.color = "#000"
             }
           }
@@ -594,7 +593,7 @@ var update100ms = window.setInterval(function(){
 
           if (iframeAgenda) {
             const iframeDocument = iframeAgenda.contentWindow.document
-            if (!isDarkMode()) {
+            if (isDarkMode()) {
               iframeDocument.body.style.color = "#fff"
             }else {
               iframeDocument.body.style.color = "#000"
