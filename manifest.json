@@ -77,7 +77,6 @@
                 "css/berichten.css"
             ],
             "js": [
-                "js/berichten.js",
 				"js/customTheme.js",
 				"js/theme.js"
             ],
