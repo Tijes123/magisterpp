@@ -27,7 +27,6 @@ chrome.storage.onChanged.addListener((changes) => {
 
 // This only gets called when the preference was changed.
 function preferenceChanged(e) {
-	console.log("preference changed: ", e);
 	document.documentElement.dataset["theme"] = e.matches ? "dark" : "light";
 };
 

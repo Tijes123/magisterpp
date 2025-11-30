@@ -346,7 +346,6 @@ var update100ms = window.setInterval(function(){
             keuzeUI = false;
 			iframeKeuze = document.getElementById("iframeKeuze");
 			if (iframeKeuze) {
-				console.log("hiding keuze");
 				iframeKeuze.style.display = "none"
 			}
 
@@ -1663,7 +1662,6 @@ var update100ms = window.setInterval(function(){
   // Set iframe event listeners for key up/down
   if (zoekenActive) {
     const berichtenIframe = document.getElementById("berichten-nieuw-frame");
-	berichtenIframe.style = "colorscheme: normal";
 
     if (berichtenIframe){
       if (setBerichtenIframeDown){
