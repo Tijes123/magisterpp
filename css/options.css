@@ -3,15 +3,38 @@
   padding: 0;
 }
 
+:root {
+	height: 100%;
+}
+
 body {
   /* Style */
 
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--mooie-bg-color-mid);
-  width: 600px;
-  height: 350px;
+}
+
+
+#main {
+  width: 50vw;
+  height: 100%;
+  background-color: var(--mooie-bg-color-mid);
+  border-radius: 16px;
+}
+
+/* This is true for the popup, not the full options page */
+@media (max-width: 600px) {
+	body {
+	  width: 600px;
+	  height: 350px;
+	}
+
+	#main {
+	  width: 100%;
+	}
 }
 
 /*? Scroll bar */
@@ -37,12 +60,6 @@ html ::-webkit-scrollbar-thumb:hover {
 
 .comment {
   color: var(--mid-gray);
-}
-
-#main {
-  width: 100%;
-  height: 100%;
-  background-color: var(--mooie-bg-color-mid);
 }
 
 #main h1 {

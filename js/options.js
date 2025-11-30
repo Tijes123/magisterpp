@@ -174,8 +174,6 @@ const saveOptions = () => {
     customPfp = false
   }
 
-	console.log("test");
-
   chrome.storage.sync.set(
     { theme: theme , keuzeBtn: keuzeBtn , cijfers: cijfers , studiewijzersGrid: studiewijzersGrid , hideHelpBtn: hideHelpBtn , hideZoekenBtn: hideZoekenBtn , inlogText: inlogText , hidePfp: hidePfp , customPfp: customPfp , widgetCustomHigh: widgetCustomHigh , widgetCustomLow: widgetCustomLow , hideBestellenBtn: hideBestellenBtn , autoLogin: autoLogin , username: username , password: password , widgetDrag: widgetDrag, customVandaag: customVandaag , maxLaatsteCijfers: maxLaatsteCijfers , keuzeMode: keuzeMode , customHtml: customHtml , showTime: showTime , customColor: selectedColorName , zermelo: zermelo , oppBtn: oppBtn , koppelingenBtn: koppelingenBtn , clockSecondBtn: clockSecondBtn , sidebarSmallBtn: sidebarSmallBtn , spaceSidebar: spaceSidebar },
     () => {
