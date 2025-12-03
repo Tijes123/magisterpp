@@ -1,0 +1,136 @@
+{
+    "manifest_version": 3,
+    "name": "Magister++",
+    "description": "Magister but just better.",
+    "version": "14.8",
+    "options_ui": {
+        "page": "html/options.html",
+        "open_in_tab": true
+    },
+
+	"browser_specific_settings": {
+	  "gecko": {
+		"id": "@magisterpp",
+		  "data_collection_permissions": {
+			"required": [ "none" ]
+		  }
+	  }
+	},
+    "icons": {
+        "16": "/icons/16.png",
+        "48": "/icons/48.png",
+        "128": "/icons/128.png"
+    },
+    "action": {
+        "default_popup": "html/options.html",
+        "default_icon": {
+            "16": "/icons/16.png",
+            "48": "/icons/48.png",
+            "128": "/icons/128.png"
+        },
+        "default_title": "Instellingen openen"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.magister.net/*"
+            ],
+            "js": [
+				"js/browser-polyfill.js",
+                "js/util.js",
+                "js/api.js",
+                "js/main.js",
+				"js/customTheme.js",
+				"js/theme.js"
+            ],
+            "css": [
+				"css/theme.css",
+                "css/main.css",
+				"css/studiewijzersGrid.css"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "*://*.magister.net/error.html?*"
+            ],
+            "css": [
+				"css/theme.css",
+                "css/error.css"
+            ],
+            "js": [
+				"js/browser-polyfill.js",
+                "js/error.js",
+				"js/customTheme.js",
+				"js/theme.js"
+            ]
+        },
+        {
+            "matches": [
+                "*://accounts.magister.net/account/login?*"
+            ],
+            "css": [
+				"css/theme.css",
+                "css/account.css"
+            ],
+            "js": [
+				"js/browser-polyfill.js",
+                "js/account.js",
+				"js/customTheme.js",
+				"js/theme.js"
+            ]
+        },
+        {
+            "matches": [
+                "*://*.magister.net/magister-berichten/*"
+            ],
+            "css": [
+				"css/theme.css",
+                "css/berichten.css"
+            ],
+            "js": [
+				"js/browser-polyfill.js",
+				"js/customTheme.js",
+				"js/theme.js"
+            ],
+            "all_frames": true
+        },
+        {
+            "matches": [
+                "*://jordanmlu.zportal.nl/app*"
+            ],
+            "js": [
+                "js/zermelo.js"
+            ],
+            "all_frames": true
+        },
+        {
+            "matches": [
+                "*://jmlu.tekar.dev/*"
+            ],
+			"css": [ 
+				"css/keuzerooster.css"
+			],
+            "js": [
+				"js/browser-polyfill.js",
+                "js/theme.js"
+            ],
+            "all_frames": true
+        }
+    ],
+    "permissions": [
+        "storage",
+        "tabs",
+        "activeTab",
+        "webNavigation",
+        "webRequest",
+        "scripting",
+        "downloads"
+    ],
+    "host_permissions": [
+        "*://*.magister.net/*"
+    ],
+    "background": {
+        "service_worker": "js/service_worker.js"
+    }
+}
