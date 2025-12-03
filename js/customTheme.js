@@ -1,3 +1,4 @@
+// Monad that creates a function for setting the storage.
 function storageChanged (colorMap) {
 	return (changes) => {
 		if (changes.customColor) {
@@ -10,14 +11,13 @@ fetch('https://jmlu.tekar.dev/data/colors.json')
 .then((res) => {
 
 	// Set initial theme.
-	chrome.storage.sync.get(
-		{customColor: "default"},
-		(items) => {
+	browser.storage.sync.get({customColor: "default"})
+		.then((items) => {
 			setCustomTheme(items.customColor, res);
 		}
 	)
 
-	chrome.storage.onChanged.addListener(storageChanged(res));
+	browser.storage.onChanged.addListener(storageChanged(res));
 })
 
 async function setCustomTheme(customColor, colorMap) {

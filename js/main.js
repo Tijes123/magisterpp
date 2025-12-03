@@ -42,7 +42,7 @@ fetch('https://jmlu.tekar.dev/data/motd.txt')
 });
  
 // check version
-const localVersion = chrome.runtime.getManifest().version;
+const localVersion = browser.runtime.getManifest().version;
 var newestVersion = "";
 
 fetch('https://raw.githubusercontent.com/TTekar/magisterpp/main/manifest.json')
@@ -178,9 +178,6 @@ function formatYMDtoDmY(dateStr) {
   return `${parseInt(day)} ${months[parseInt(month) - 1]} ${year}`;
 }
 
-// Is the current theme dark, this is only needed to send the theme to the other websites.
-
-
 var update100ms = window.setInterval(function(){
 
   if(document.querySelector("#user-menu > figure > img").getAttribute("alt") == "Aidan Schoester") {
@@ -206,10 +203,8 @@ var update100ms = window.setInterval(function(){
 
   // if (!document.getElementById("coverDivKeuze")) {
   if (true) {  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    chrome.storage.sync.get(
-      { keuzeBtn: true, theme: "auto" , keuzeMode: "table" , zermelo: false },
-      (items) => {
-
+    browser.storage.sync.get({ keuzeBtn: true, keuzeMode: "table" , zermelo: false })
+	  .then((items) => {
         /// Keuze page
         if (!document.getElementById("coverDivKeuze")) {
           const mainView = document.querySelector("div.view.ng-scope")
@@ -418,9 +413,26 @@ var update100ms = window.setInterval(function(){
 
 
   /// Chrome storage
-  chrome.storage.sync.get(
-      { cijfers: false , hideHelpBtn: true , hidePfp: false , widgetCustomHigh: 385 , widgetCustomLow: 0 , theme: "auto" , hideBestellenBtn: false , customPfp: false , widgetDrag: true , hideZoekenBtn: true , customVandaag: false , maxLaatsteCijfers: 10 , showTime: false , oppBtn: true , koppelingenBtn: true , clockSecondBtn: true , sidebarSmallBtn: false , spaceSidebar: false },
-      (items) => {
+  browser.storage.sync.get({ 
+	  cijfers: false ,
+	  hideHelpBtn: true ,
+	  hidePfp: false ,
+	  widgetCustomHigh: 385 ,
+	  widgetCustomLow: 0,
+	  hideBestellenBtn: false ,
+	  customPfp: false ,
+	  widgetDrag: true ,
+	  hideZoekenBtn: true ,
+	  customVandaag: false ,
+	  maxLaatsteCijfers: 10 ,
+	  showTime: false ,
+	  oppBtn: true ,
+	  koppelingenBtn: true ,
+	  clockSecondBtn: true ,
+	  sidebarSmallBtn: false ,
+	  spaceSidebar: false
+  })
+	.then((items) => {
 
         spaceToggleSidebar = items.spaceSidebar
 
@@ -429,9 +441,8 @@ var update100ms = window.setInterval(function(){
         //~ Set custom pfp
         if (items.customPfp) {
 
-          chrome.storage.local.get(
-            {  userImage: "" },
-            (items) => {
+          browser.storage.local.get({  userImage: "" })
+			.then((items) => {
               document.querySelectorAll('img[mg-http-src$="/foto"]').forEach((img) => {
 
                 if(document.querySelector("#user-menu > figure > img").getAttribute("alt") == "Aidan Schoester") {
@@ -1972,9 +1983,8 @@ function toggleSearchBox() {
   const searchBox = document.getElementById("searchBox")
 
   if (searchBox.style.display === "none") {
-    chrome.storage.sync.get(
-      { hideZoekenBtn: true },
-      (items) => {
+    browser.storage.sync.get({ hideZoekenBtn: true })
+	  .then((items) => {
         if (!items.hideZoekenBtn) {
           searchBox.style.display = "block"
           const searchInput = document.getElementById("searchInput")
@@ -2348,7 +2358,7 @@ document.addEventListener('keydown', (e) => {
 //   }
 
 //   /// download file
-//   chrome.runtime.sendMessage({
+//   browser.runtime.sendMessage({
 //     action: "download",
 //     filename: "data.txt",
 //     text: JSON.stringify(allContents, null, 4)

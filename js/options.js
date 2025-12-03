@@ -88,7 +88,7 @@ sbUpdate.onclick = () => {
 }
 
 function checkUpdate() {
-  const localVersion = chrome.runtime.getManifest().version;
+  const localVersion = browser.runtime.getManifest().version;
   document.getElementById("currentVersion").textContent = `Versie: ${localVersion}`;
 
   fetch('https://raw.githubusercontent.com/TTekar/magisterpp/main/manifest.json')
@@ -174,24 +174,74 @@ const saveOptions = () => {
     customPfp = false
   }
 
-  chrome.storage.sync.set(
-    { theme: theme , keuzeBtn: keuzeBtn , cijfers: cijfers , studiewijzersGrid: studiewijzersGrid , hideHelpBtn: hideHelpBtn , hideZoekenBtn: hideZoekenBtn , inlogText: inlogText , hidePfp: hidePfp , customPfp: customPfp , widgetCustomHigh: widgetCustomHigh , widgetCustomLow: widgetCustomLow , hideBestellenBtn: hideBestellenBtn , autoLogin: autoLogin , username: username , password: password , widgetDrag: widgetDrag, customVandaag: customVandaag , maxLaatsteCijfers: maxLaatsteCijfers , keuzeMode: keuzeMode , customHtml: customHtml , showTime: showTime , customColor: selectedColorName , zermelo: zermelo , oppBtn: oppBtn , koppelingenBtn: koppelingenBtn , clockSecondBtn: clockSecondBtn , sidebarSmallBtn: sidebarSmallBtn , spaceSidebar: spaceSidebar },
-    () => {
-      // do after saved
-      // console.log(`darkMode: ${darkMode}\nkeuzeBtn: ${keuzeBtn}\ncijfers: ${cijfers}\nstudiewijzersGrid: ${studiewijzersGrid}\nhideHelpBtn: ${hideHelpBtn}\ninlogText: ${inlogText}\nhidePfp: ${hidePfp}\ncustomPfp:${customPfp}\nwidgetCustomHigh:${widgetCustomHigh}\nwidgetCustomLow:${widgetCustomLow}`)
-      updateAutoLogin()
-      updateFileUpload()
-      updateKeuzeMode()
-      updateCustomSelectedColor()
-      updateClockSecond()
-    }
+  browser.storage.sync.set({ 
+	theme: theme,
+	keuzeBtn: keuzeBtn,
+	cijfers: cijfers,
+	studiewijzersGrid: studiewijzersGrid,
+	hideHelpBtn: hideHelpBtn,
+	hideZoekenBtn: hideZoekenBtn,
+	inlogText: inlogText,
+	hidePfp: hidePfp,
+	customPfp: customPfp,
+	widgetCustomHigh: widgetCustomHigh,
+	widgetCustomLow: widgetCustomLow,
+	hideBestellenBtn: hideBestellenBtn,
+	autoLogin: autoLogin,
+	username: username,
+	password: password,
+	widgetDrag: widgetDrag, customVandaag: customVandaag,
+	maxLaatsteCijfers: maxLaatsteCijfers,
+	keuzeMode: keuzeMode,
+	customHtml: customHtml,
+	showTime: showTime,
+	customColor: selectedColorName,
+	zermelo: zermelo,
+	oppBtn: oppBtn,
+	koppelingenBtn: koppelingenBtn,
+	clockSecondBtn: clockSecondBtn,
+	sidebarSmallBtn: sidebarSmallBtn,
+	spaceSidebar: spaceSidebar
+  }).then(
+      updateAutoLogin,
+      updateFileUpload,
+      updateKeuzeMode,
+      updateCustomSelectedColor,
+      updateClockSecond
   )
 };
 
 const restoreOptions = () => {
-  chrome.storage.sync.get(
-    { theme: "auto" , keuzeBtn: true , cijfers: false , studiewijzersGrid: false , hideHelpBtn: true , inlogText: "Bonjour" , hidePfp: false , customPfp: false , widgetCustomHigh: 385 , widgetCustomLow: 0 , hideBestellenBtn: false , autoLogin: false , username: "" , password: "" , widgetDrag: true , hideZoekenBtn: true , customVandaag: false , maxLaatsteCijfers: 10 , keuzeMode: "table" , customHtml: false , showTime: false , customColor: "default" , zermelo: false , oppBtn: true , koppelingenBtn: true , clockSecondBtn: true , sidebarSmallBtn: false , spaceSidebar: false },
-    (items) => {
+  browser.storage.sync.get({ 
+    theme: "auto",
+	keuzeBtn: true,
+	cijfers: false,
+	studiewijzersGrid: false,
+	hideHelpBtn: true,
+	inlogText: "Bonjour",
+	hidePfp: false,
+	customPfp: false,
+	widgetCustomHigh: 385,
+	widgetCustomLow: 0,
+	hideBestellenBtn: false,
+	autoLogin: false,
+	username: "",
+	password: "",
+	widgetDrag: true,
+	hideZoekenBtn: true,
+	customVandaag: false,
+	maxLaatsteCijfers: 10,
+	keuzeMode: "table",
+	customHtml: false,
+	showTime: false,
+	customColor: "default",
+	zermelo: false,
+	oppBtn: true,
+	koppelingenBtn: true,
+	clockSecondBtn: true,
+	sidebarSmallBtn: false,
+	spaceSidebar: false 
+  }).then((items) => {
       document.getElementById('dark').checked = items.theme == "dark";
       document.getElementById('light').checked = items.theme == "light";
       document.getElementById('auto').checked = items.theme == "auto";
@@ -351,7 +401,7 @@ document.getElementById("upload").addEventListener("change", async function (eve
 
         const resizedImageURL = canvas.toDataURL("image/png");
 
-        chrome.storage.local.set(
+        browser.storage.local.set(
           { userImage: resizedImageURL },
           () => {
             console.log("Image had been saved")

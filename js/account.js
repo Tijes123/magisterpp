@@ -1,9 +1,13 @@
 
 var update100msAccount = window.setInterval(function(){
-
-    chrome.storage.sync.get(
-        { autoLogin: false , username: "" , password: "" , inlogText: "Bonjour" , customHtml: false },
-        (items) => {
+    browser.storage.sync.get({ 
+		autoLogin: false,
+		username: "",
+		password: "",
+		inlogText: "Bonjour",
+		customHtml: false
+	})
+		.then((items) => {
 
             //~ Custom text
             if (!document.getElementById("customLoginText")) {

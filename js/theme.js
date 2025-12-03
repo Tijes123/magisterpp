@@ -1,19 +1,17 @@
-chrome.storage.sync.get(
-	{theme: "auto", studiewijzersGrid: false, darkMode: null},
-	(items) => {
+browser.storage.sync.get( {theme: "auto", studiewijzersGrid: false, darkMode: null} )
+	.then((items) => {
 		let theme = items.theme;
 		if (items.darkMode) {
-			chrome.storage.sync.remove("darkMode");
+			browser.storage.sync.remove("darkMode");
 			theme = items.darkMode ? "dark" : "light";
-			chrome.storage.sync.set({theme: theme});
+			browser.storage.sync.set({theme: theme});
 		}
 
 		setGrid(items.studiewijzersGrid);
 		setTheme(theme);
-	}
-)
+	})
 
-chrome.storage.onChanged.addListener((changes) => {
+browser.storage.onChanged.addListener((changes) => {
 	if (changes.theme) {
 		const theme = changes.theme.newValue;
 		setTheme(theme);

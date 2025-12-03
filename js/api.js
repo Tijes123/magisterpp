@@ -427,7 +427,7 @@ async function updateApiCredentials(identifier = 'unknown') {
         })
 
     async function getApiCredentialsMemory(resolve, reject) {
-        let storageLocation = chrome.storage.session?.get ? 'session' : 'local'
+        let storageLocation = browser.storage.session?.get ? 'session' : 'local'
         now = new Date()
 
         if (!(magisterApiUserId?.length > 1)) {

@@ -1,4 +1,4 @@
-chrome.runtime.sendMessage({ action: 'popstateDetected' }) // Revive the service worker
+browser.runtime.sendMessage({ action: 'popstateDetected' }) // Revive the service worker
 
 let syncedStorage = {},
     localStorage = {},
@@ -15,16 +15,16 @@ let eggs = [],
     snackbarQueue = [];
 
 (async () => {
-    if (chrome?.storage) {
+    if (browser?.storage) {
         syncedStorage = await getFromStorageMultiple(null, 'sync', true)
 
-        if (chrome?.runtime) {
+        if (browser?.runtime) {
             locale = syncedStorage['language']
             if (!['nl-NL', 'en-GB', 'fr-FR', 'de-DE', 'sv-SE', 'la-LA'].includes(locale)) locale = 'nl-NL'
-            chrome.storage.sync.onChanged.addListener((changes) => { if (changes.language) window.location.reload() })
-            const req = await fetch(chrome.runtime.getURL(`src/strings/${locale.split('-')[0]}.json`))
+            browser.storage.sync.onChanged.addListener((changes) => { if (changes.language) window.location.reload() })
+            const req = await fetch(browser.runtime.getURL(`src/strings/${locale.split('-')[0]}.json`))
             i18nData = await req.json()
-            const reqNl = await fetch(chrome.runtime.getURL(`src/strings/nl.json`))
+            const reqNl = await fetch(browser.runtime.getURL(`src/strings/nl.json`))
             i18nDataNl = await reqNl.json()
         }
 
@@ -138,8 +138,8 @@ function awaitElement(querySelector, all = false, duration = 10000, quiet = fals
  */
 function getFromStorage(key, location = 'sync') {
     return new Promise((resolve, reject) => {
-        if (location === 'session' && !chrome.storage.session) location = 'local'
-        chrome.storage[location].get([key], (result) => {
+        if (location === 'session' && !browser.storage.session) location = 'local'
+        browser.storage[location].get([key]).then((result) => {
             let value = Object.values(result || {})[0]
             value ? resolve(value) : resolve('')
         })
@@ -155,8 +155,8 @@ function getFromStorage(key, location = 'sync') {
  */
 function getFromStorageMultiple(array, location = 'sync', all = false) {
     return new Promise((resolve, reject) => {
-        if (location === 'session' && !chrome.storage.session) location = 'local'
-        chrome.storage[location].get(all ? null : array.map(e => [e]), (result) => {
+        if (location === 'session' && !browser.storage.session) location = 'local'
+        browser.storage[location].get(all ? null : array.map(e => [e])).then((result) => {
             result ? resolve(result) : reject(Error('None found'))
         })
     })
@@ -164,8 +164,8 @@ function getFromStorageMultiple(array, location = 'sync', all = false) {
 
 function saveToStorage(key, value, location) {
     return new Promise((resolve, reject) => {
-        if (location === 'session' && !chrome.storage.session) location = 'local'
-        chrome.storage[location ? location : 'sync'].set({ [key]: value }, resolve())
+        if (location === 'session' && !browser.storage.session) location = 'local'
+        browser.storage[location ? location : 'sync'].set({ [key]: value }, resolve())
     })
 }
 
